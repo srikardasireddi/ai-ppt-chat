@@ -1,0 +1,128 @@
+/* src/App.css */
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  gap: 20px;
+}
+
+.chat-window {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.preview-window {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.preview-placeholder {
+  color: #999;
+  font-size: 1.2em;
+}
+
+.message-list {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  max-width: 80%;
+}
+
+.welcome-message {
+  background-color: #e0e0e0;
+  align-self: flex-start;
+}
+
+.message-form {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.send-button {
+  padding: 12px 20px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+/* src/App.css (ADD THIS AT THE END) */
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-message {
+  background-color: #e0e0e0;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+/* src/App.css (ADD THIS AT THE END) */
+
+.download-button {
+  padding: 12px 20px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.download-button:hover {
+  background-color: #218838;
+}
+
+.preview-placeholder {
+  text-align: center;
+}
+/* src/App.css (ADD THIS AT THE END) */
+
+.download-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
