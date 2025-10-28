@@ -6,7 +6,7 @@ import pptxgen from 'pptxgenjs';
 import './App.css';
 
 // --- FAKE AI DATA ---
-// This is the sample JSON we will use to prove our app works
+
 const sampleSlideData = {
   slides: [
     {
@@ -41,7 +41,7 @@ const sampleSlideData = {
 function App() {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([
-    { text: 'Hello! Type any prompt to generate a demo presentation.', sender: 'ai' }
+    { text: 'Hello! How can I help you create a presentation today?', sender: 'ai' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const [presentationData, setPresentationData] = useState(null);
@@ -73,46 +73,60 @@ function App() {
   };
   // --- END PPT LOGIC ---
 
-  // --- SUBMIT HANDLER (MODIFIED) ---
-  // This function now fakes the AI response
+  // --- SUBMIT HANDLER (CORRECTED) ---
   const handleSubmit = (e) => {
     e.preventDefault(); 
     const userMessage = inputValue.trim();
+    const userMessageLower = userMessage.toLowerCase(); // For checking
     
-    if (userMessage) {
-      setIsLoading(true);
+    if (!userMessage) return; // Don't do anything if input is empty
       
-      // 1. Add user message
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: userMessage, sender: 'user' }
-      ]);
-      setInputValue('');
+    setIsLoading(true);
+    
+    // 1. Add user message to chat
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: userMessage, sender: 'user' }
+    ]);
+    setInputValue('');
 
-      // 2. FAKE the AI response
-      setTimeout(() => {
-        // 3. Set the sample data
-        setPresentationData(sampleSlideData); 
-        
-        // 4. Add the "success" message to the chat
+    // 2. FAKE the AI response with a 1-second delay
+    setTimeout(() => {
+      
+      // --- THIS IS THE CORRECTED LOGIC ---
+      // We added "hii" to the list
+      if (userMessageLower === 'hello' || userMessageLower === 'hi' || userMessageLower === 'hey' || userMessageLower === 'hii') {
+        // It's a greeting, so just respond with a greeting
         setMessages((prevMessages) => [
           ...prevMessages,
           { 
-            text: `I've prepared ${sampleSlideData.slides.length} slides for you. You can now download the presentation.`, 
+            text: "Hello! Please tell me what topic you'd like a presentation on.", 
             sender: 'ai' 
           }
         ]);
+      } else {
+        // It's not a greeting, so assume it's a topic and generate slides
+        setPresentationData(sampleSlideData); 
         
-        // 5. Stop loading
-        setIsLoading(false); 
-      }, 1000); // Wait 1 second to make it look real
-    }
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { 
+            text: `I've prepared ${sampleSlideData.slides.length} slides for you on "${userMessage}". You can now download the presentation.`, 
+            sender: 'ai' 
+          }
+        ]);
+      }
+      // --- END OF CORRECTED LOGIC ---
+      
+      setIsLoading(false); 
+    }, 1000); 
   };
   // --- END HANDLER ---
 
   return (
     <div className="app-container">
       <div className="chat-window">
+        {/* ... (rest of the UI is the same) ... */}
         <div className="message-list">
           {messages.map((msg, index) => (
             <div
